@@ -1,0 +1,519 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {
+  "theme": {
+    "extend": {
+      "colors": {
+        "optimind-orange": "#F28C38",
+        "optimind-peach": "#FFCCB3",
+        "optimind-light": "#FFF8F1",
+        "optimind-dark": "#333333",
+        "optimind-gray": "#666666",
+        "optimind-success": "#66BB6A",
+        "optimind-error": "#E57373"
+      },
+      "fontFamily": {
+        "nunito": [
+          "Nunito",
+          "sans-serif"
+        ],
+        "sans": [
+          "Inter",
+          "sans-serif"
+        ]
+      }
+    }
+  }
+};</script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>::-webkit-scrollbar { display: none;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&amp;display=swap"><style>
+      body {
+        font-family: 'Inter', sans-serif !important;
+      }
+      
+      /* Preserve Font Awesome icons */
+      .fa, .fas, .far, .fal, .fab {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      }
+    </style><style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style></head>
+<body class="font-nunito bg-optimind-light">
+
+    <!-- Visual Acuity Test Screen -->
+    <div id="vision-test-screen" class="min-h-screen bg-gradient-to-b from-optimind-light to-white">
+        
+        <!-- Header Section -->
+        <div id="header" class="px-8 pt-12 pb-6">
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="goBack()" class="p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all">
+                    <i class="fa-solid fa-arrow-left text-xl text-optimind-dark"></i>
+                </button>
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold text-optimind-dark">Visual Acuity Test</h1>
+                    <p class="text-sm text-optimind-gray mt-1">Test your visual sharpness</p>
+                </div>
+                <button class="p-3 rounded-full bg-white shadow-lg">
+                    <i class="fa-solid fa-question-circle text-xl text-optimind-orange"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Instructions Section -->
+        <div id="instructions-section" class="px-6 mb-6">
+            <div class="bg-white rounded-2xl p-4 shadow-lg">
+                <div class="text-center mb-4">
+                    <h2 class="text-xl font-bold text-optimind-dark mb-1">Mark the spot.</h2>
+                    <p class="text-base text-optimind-gray">
+                        See the top ring? Mark the corresponding spot on the lower ring
+                    </p>
+                </div>
+                
+                <!-- Example -->
+                <div class="bg-optimind-light rounded-xl p-4">
+                    <!-- Top Ring (Example) -->
+                    <div class="text-center mb-3">
+                        <div class="w-6 h-6 mx-auto mb-1 flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 32 32">
+                                <!-- Ring divided into 8 segments centered on main directions -->
+                                <!-- Using precise calculations: center(16,16), radius=12 -->
+                                <!-- Top segment (337.5° to 22.5°, centered on 0°) -->
+                                <path d="M 27.09 11.40 A 12 12 0 0 1 27.09 20.60" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"></path>
+                                <!-- Top-right segment (22.5° to 67.5°, centered on 45°) -->
+                                <path d="M 27.09 20.60 A 12 12 0 0 1 20.60 27.09" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"></path>
+                                <!-- Right segment (67.5° to 112.5°, centered on 90°) -->
+                                <path d="M 20.60 27.09 A 12 12 0 0 1 11.40 27.09" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"></path>
+                                <!-- Bottom-right segment (112.5° to 157.5°, centered on 135°) -->
+                                <path d="M 11.40 27.09 A 12 12 0 0 1 4.91 20.60" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"></path>
+                                <!-- Bottom segment (157.5° to 202.5°, centered on 180°) -->
+                                <path d="M 4.91 20.60 A 12 12 0 0 1 4.91 11.40" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"></path>
+                                <!-- Bottom-left segment (202.5° to 247.5°, centered on 225°) -->
+                                <path d="M 4.91 11.40 A 12 12 0 0 1 11.40 4.91" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"></path>
+                                <!-- Left segment (247.5° to 292.5°, centered on 270°) is MISSING (gap) -->
+                                <!-- Top-left segment (292.5° to 337.5°, centered on 315°) -->
+                                <path d="M 20.60 4.91 A 12 12 0 0 1 27.09 11.40" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Ring (Interactive) -->
+                    <div class="text-center">
+                        <div class="w-40 h-40 mx-auto relative">
+                            <!-- Segmented Ring -->
+                            <svg width="160" height="160" viewBox="0 0 192 192" class="absolute inset-0">
+                                <!-- Using precise calculations: outer radius=72, inner radius=42, center(96,96) -->
+                                <!-- Segments centered on main directions (top, right, bottom, left, and diagonals) -->
+                                <!-- Top segment (337.5° to 22.5°, centered on 0°) -->
+                                <path d="M 162.53 68.42 A 72 72 0 0 1 162.53 123.58 L 134.81 112.09 A 42 42 0 0 0 134.81 79.91 Z" 
+                                      fill="#E5E5E5" stroke="white" stroke-width="3"></path>
+                                <!-- Top-right segment (22.5° to 67.5°, centered on 45°) -->
+                                <path d="M 162.53 123.58 A 72 72 0 0 1 123.58 162.53 L 112.09 134.81 A 42 42 0 0 0 134.81 112.09 Z" 
+                                      fill="#E5E5E5" stroke="white" stroke-width="3"></path>
+                                <!-- Right segment (67.5° to 112.5°, centered on 90°) -->
+                                <path d="M 123.58 162.53 A 72 72 0 0 1 68.42 162.53 L 79.91 134.81 A 42 42 0 0 0 112.09 134.81 Z" 
+                                      fill="#E5E5E5" stroke="white" stroke-width="3"></path>
+                                <!-- Bottom-right segment (112.5° to 157.5°, centered on 135°) -->
+                                <path d="M 68.42 162.53 A 72 72 0 0 1 29.47 123.58 L 57.19 112.09 A 42 42 0 0 0 79.91 134.81 Z" 
+                                      fill="#E5E5E5" stroke="white" stroke-width="3"></path>
+                                <!-- Bottom segment (157.5° to 202.5°, centered on 180°) -->
+                                <path d="M 29.47 123.58 A 72 72 0 0 1 29.47 68.42 L 57.19 79.91 A 42 42 0 0 0 57.19 112.09 Z" 
+                                      fill="#E5E5E5" stroke="white" stroke-width="3"></path>
+                                <!-- Bottom-left segment (202.5° to 247.5°, centered on 225°) -->
+                                <path d="M 29.47 68.42 A 72 72 0 0 1 68.42 29.47 L 79.91 57.19 A 42 42 0 0 0 57.19 79.91 Z" 
+                                      fill="#E5E5E5" stroke="white" stroke-width="3"></path>
+                                <!-- Left segment (247.5° to 292.5°, centered on 270°) - highlighted as example -->
+                                <path d="M 68.42 29.47 A 72 72 0 0 1 123.58 29.47 L 112.09 57.19 A 42 42 0 0 0 79.91 57.19 Z" 
+                                      fill="#F28C38" stroke="white" stroke-width="3" opacity="0.9"></path>
+                                <!-- Top-left segment (292.5° to 337.5°, centered on 315°) -->
+                                <path d="M 123.58 29.47 A 72 72 0 0 1 162.53 68.42 L 134.81 79.91 A 42 42 0 0 0 112.09 57.19 Z" 
+                                      fill="#E5E5E5" stroke="white" stroke-width="3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- Next Button -->
+                    <div class="text-center mt-4">
+                        <button onclick="showPositioningInstructions()" class="bg-optimind-orange text-white font-semibold py-2 px-6 rounded-2xl hover:bg-orange-600 transition-all">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Area -->
+        <div id="test-area" class="px-8 mb-32" style="display: none;">
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                
+                <!-- Progress Indicator -->
+                <div id="progress-indicator" class="mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-optimind-gray">Step <span id="current-step">1</span> of <span id="total-steps">8</span></span>
+                        <span class="text-sm text-optimind-gray"><span id="progress-percent">12</span>%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="bg-optimind-orange h-2 rounded-full transition-all duration-500" style="width: 12%"></div>
+                    </div>
+                </div>
+
+                <!-- Top Ring Display -->
+                <div id="landolt-display" class="text-center mb-8">
+                    <div class="w-6 h-6 mx-auto mb-4 flex items-center justify-center">
+                        <svg id="landolt-ring" width="24" height="24" viewBox="0 0 32 32" class="transition-all duration-300">
+                            <!-- Dynamic ring segments will be inserted here -->
+                        </svg>
+                    </div>
+                    <p class="text-lg text-optimind-gray">Which direction is the opening?</p>
+                </div>
+
+                <!-- Interactive Segmented Ring -->
+                <div id="direction-buttons" class="text-center mb-8">
+                    <div class="w-48 h-48 mx-auto relative">
+                        <svg width="192" height="192" viewBox="0 0 192 192" class="absolute inset-0">
+                            <!-- Top segment -->
+                            <path id="segment-up" d="M 162.53 68.42 A 72 72 0 0 1 162.53 123.58 L 134.81 112.09 A 42 42 0 0 0 134.81 79.91 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all" 
+                                  onclick="selectDirection('up')"></path>
+                            <!-- Top-right segment -->
+                            <path id="segment-top-right" d="M 162.53 123.58 A 72 72 0 0 1 123.58 162.53 L 112.09 134.81 A 42 42 0 0 0 134.81 112.09 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all"
+                                  onclick="selectDirection('top-right')"></path>
+                            <!-- Right segment -->
+                            <path id="segment-right" d="M 123.58 162.53 A 72 72 0 0 1 68.42 162.53 L 79.91 134.81 A 42 42 0 0 0 112.09 134.81 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all"
+                                  onclick="selectDirection('right')"></path>
+                            <!-- Bottom-right segment -->
+                            <path id="segment-bottom-right" d="M 68.42 162.53 A 72 72 0 0 1 29.47 123.58 L 57.19 112.09 A 42 42 0 0 0 79.91 134.81 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all"
+                                  onclick="selectDirection('bottom-right')"></path>
+                            <!-- Bottom segment -->
+                            <path id="segment-down" d="M 29.47 123.58 A 72 72 0 0 1 29.47 68.42 L 57.19 79.91 A 42 42 0 0 0 57.19 112.09 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all"
+                                  onclick="selectDirection('down')"></path>
+                            <!-- Bottom-left segment -->
+                            <path id="segment-bottom-left" d="M 29.47 68.42 A 72 72 0 0 1 68.42 29.47 L 79.91 57.19 A 42 42 0 0 0 57.19 79.91 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all"
+                                  onclick="selectDirection('bottom-left')"></path>
+                            <!-- Left segment -->
+                            <path id="segment-left" d="M 68.42 29.47 A 72 72 0 0 1 123.58 29.47 L 112.09 57.19 A 42 42 0 0 0 79.91 57.19 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all"
+                                  onclick="selectDirection('left')"></path>
+                            <!-- Top-left segment -->
+                            <path id="segment-top-left" d="M 123.58 29.47 A 72 72 0 0 1 162.53 68.42 L 134.81 79.91 A 42 42 0 0 0 112.09 57.19 Z" 
+                                  fill="#E5E5E5" stroke="white" stroke-width="3" class="cursor-pointer hover:fill-optimind-peach transition-all"
+                                  onclick="selectDirection('top-left')"></path>
+                        </svg>
+                        <!-- Feedback Icon (initially hidden) -->
+                        <div id="feedback-icon-center" class="absolute inset-0 flex items-center justify-center hidden" style="z-index: 10;">
+                            <div class="bg-white bg-opacity-90 rounded-full w-20 h-20 flex items-center justify-center shadow-lg">
+                                <img id="feedback-icon-symbol" src="" alt="Feedback" class="w-12 h-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- Bottom Navigation -->
+        <div id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-8 py-4" style="display: none;">
+            <div class="flex justify-center space-x-4">
+                <button onclick="cancelTest()" class="flex-1 bg-gray-100 text-optimind-gray font-semibold py-4 px-6 rounded-2xl text-lg hover:bg-gray-200 transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-times mr-2"></i>
+                    Cancel Test
+                </button>
+                <button onclick="nextStep()" class="flex-1 bg-optimind-peach text-optimind-dark font-semibold py-4 px-6 rounded-2xl text-lg hover:bg-orange-200 transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-arrow-right mr-2"></i>
+                    Next
+                </button>
+            </div>
+        </div>
+
+        <!-- Feedback Modal -->
+        <div id="feedback-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-2xl p-8 mx-8 max-w-sm w-full">
+                <div class="text-center">
+                    <div id="feedback-icon" class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i id="feedback-icon-symbol" class="text-3xl"></i>
+                    </div>
+                    <h3 id="feedback-title" class="text-xl font-bold mb-2"></h3>
+                    <p id="feedback-message" class="text-lg text-optimind-gray mb-6"></p>
+                    <button onclick="nextStep()" class="bg-optimind-orange text-white font-semibold py-3 px-8 rounded-2xl hover:bg-orange-600 transition-all">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Modal -->
+        <div id="results-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-2xl p-8 mx-8 max-w-md w-full">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-optimind-peach rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-3xl text-optimind-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-optimind-dark mb-3">Test Complete!</h3>
+                    <div class="bg-optimind-light rounded-xl p-4 mb-4">
+                        <p class="text-lg text-optimind-dark mb-2">Your Score:</p>
+                        <div class="text-3xl font-bold text-optimind-success"><span id="final-score">0</span> out of 8</div>
+                    </div>
+                    <p class="text-sm text-optimind-gray mb-6 leading-relaxed">
+                        This test is not a substitute for an eye exam. For a full diagnosis, visit an eye specialist.
+                    </p>
+                    <div class="flex space-x-3">
+                        <button onclick="retakeTest()" class="flex-1 bg-gray-100 text-optimind-gray font-semibold py-3 px-4 rounded-2xl hover:bg-gray-200 transition-all">
+                            Retake
+                        </button>
+                        <button onclick="goToResults()" class="flex-1 bg-optimind-orange text-white font-semibold py-3 px-4 rounded-2xl hover:bg-orange-600 transition-all">
+                            Return to Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Test State
+        let currentStep = 1;
+
+        // Show positioning instructions
+        function showPositioningInstructions() {
+            const instructionsSection = document.getElementById('instructions-section');
+            instructionsSection.innerHTML = `
+                <!-- Instructions Content -->
+                <div class="px-8 mb-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="text-center">
+                            <h2 class="text-2xl font-bold text-optimind-dark mb-2">Test Position</h2>
+                            <p class="text-lg text-optimind-gray mb-6">Keep your device at arm's length during the check</p>
+                            
+                            <img src="assets/images/old_man2.jpg" alt="Elderly person holding iPad at arm's length" class="w-48 h-48 object-contain rounded-2xl mx-auto mb-6">
+                            
+                            <!-- Next Button -->
+                            <div class="text-center">
+                                <button onclick="showEyeCoveringInstructions()" class="bg-optimind-orange text-white font-semibold py-3 px-8 rounded-2xl hover:bg-orange-600 transition-all">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show eye covering instructions
+        function showEyeCoveringInstructions() {
+            const instructionsSection = document.getElementById('instructions-section');
+            instructionsSection.innerHTML = `
+                <!-- Instructions Content -->
+                <div class="px-8 mb-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="text-center">
+                            <h2 class="text-2xl font-bold text-optimind-dark mb-2">Cover Eye</h2>
+                            <p class="text-lg text-optimind-gray mb-6">Hide your left eye</p>
+                            
+                            <img src="assets/images/old_man.jpg" alt="Elderly person covering left eye" class="w-48 h-48 object-contain rounded-2xl mx-auto mb-6">
+                            
+                            <!-- Start Test Button -->
+                            <div class="text-center">
+                                <button onclick="startTest()" class="bg-optimind-orange text-white font-semibold py-3 px-8 rounded-2xl hover:bg-orange-600 transition-all">
+                                    Start Test
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Start the actual test
+        function startTest() {
+            // Hide instructions section and show test area
+            document.getElementById('instructions-section').style.display = 'none';
+            document.getElementById('test-area').style.display = 'block';
+            document.getElementById('bottom-nav').style.display = 'block';
+            
+            // Initialize the test
+            generateNewRing();
+            updateProgress();
+        }
+
+        let totalSteps = 8;
+        let correctAnswers = 0;
+        let currentDirection = 'up';
+        let ringSize = 24;
+        
+        const directions = ['up', 'top-right', 'right', 'bottom-right', 'down', 'bottom-left', 'left', 'top-left'];
+        const ringSizes = [24, 24, 24, 24, 24, 24, 24, 24];
+        const sizeLabels = ['Large', 'Medium-Large', 'Medium', 'Medium-Small', 'Small', 'Very Small', 'Tiny', 'Extra Tiny'];
+
+        // Initialize test
+        document.addEventListener('DOMContentLoaded', function() {
+            generateNewRing();
+        });
+
+        function generateNewRing() {
+            // Random direction
+            currentDirection = directions[Math.floor(Math.random() * directions.length)];
+            
+            // Generate small segmented ring with missing segment
+            const svg = document.getElementById('landolt-ring');
+            const segments = {
+                'up': 'M 27.09 11.40 A 12 12 0 0 1 27.09 20.60',
+                'top-right': 'M 27.09 20.60 A 12 12 0 0 1 20.60 27.09',
+                'right': 'M 20.60 27.09 A 12 12 0 0 1 11.40 27.09',
+                'bottom-right': 'M 11.40 27.09 A 12 12 0 0 1 4.91 20.60',
+                'down': 'M 4.91 20.60 A 12 12 0 0 1 4.91 11.40',
+                'bottom-left': 'M 4.91 11.40 A 12 12 0 0 1 11.40 4.91',
+                'left': 'M 11.40 4.91 A 12 12 0 0 1 20.60 4.91',
+                'top-left': 'M 20.60 4.91 A 12 12 0 0 1 27.09 11.40'
+            };
+            
+            // Clear previous content
+            svg.innerHTML = '';
+            
+            // Add all segments except the current direction (missing segment)
+            directions.forEach(direction => {
+                if (direction !== currentDirection) {
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', segments[direction]);
+                    path.setAttribute('fill', 'none');
+                    path.setAttribute('stroke', '#333');
+                    path.setAttribute('stroke-width', '3');
+                    path.setAttribute('stroke-linecap', 'round');
+                    svg.appendChild(path);
+                }
+            });
+            
+            // Ring generated successfully
+        }
+
+        function selectDirection(selectedDirection) {
+            // Highlight selected segment
+            resetSegmentColors();
+            const selectedSegment = document.getElementById(`segment-${selectedDirection}`);
+            selectedSegment.setAttribute('fill', '#F28C38');
+            
+            // Check if correct
+            const isCorrect = selectedDirection === currentDirection;
+            
+            // Brief delay to show selection, then show feedback
+            setTimeout(() => {
+                if (isCorrect) {
+                    correctAnswers++;
+                    showInlineFeedback(true);
+                } else {
+                    showInlineFeedback(false);
+                }
+            }, 300);
+        }
+
+        function showInlineFeedback(isCorrect) {
+            const feedbackIcon = document.getElementById('feedback-icon-center');
+            const iconSymbol = document.getElementById('feedback-icon-symbol');
+            
+            if (isCorrect) {
+                iconSymbol.src = 'assets/images/ic_correct.svg';
+                iconSymbol.alt = 'Correct';
+            } else {
+                iconSymbol.src = 'assets/images/ic_incorrect.svg';
+                iconSymbol.alt = 'Incorrect';
+            }
+            
+            // Show feedback icon
+            feedbackIcon.classList.remove('hidden');
+            
+            // Hide after 1 second and move to next step
+            setTimeout(() => {
+                feedbackIcon.classList.add('hidden');
+                nextStep();
+            }, 1000);
+        }
+
+        function resetSegmentColors() {
+            directions.forEach(direction => {
+                const segment = document.getElementById(`segment-${direction}`);
+                if (segment) {
+                    segment.setAttribute('fill', '#E5E5E5');
+                }
+            });
+        }
+
+
+
+        function nextStep() {
+            if (currentStep >= totalSteps) {
+                showResults();
+                return;
+            }
+            
+            currentStep++;
+            updateProgress();
+            resetSegmentColors();
+            generateNewRing();
+        }
+
+        function updateProgress() {
+            const progressPercent = Math.round((currentStep / totalSteps) * 100);
+            document.getElementById('current-step').textContent = currentStep;
+            document.getElementById('progress-percent').textContent = progressPercent;
+            document.getElementById('progress-bar').style.width = progressPercent + '%';
+        }
+
+        function showResults() {
+            document.getElementById('final-score').textContent = correctAnswers;
+            document.getElementById('results-modal').classList.remove('hidden');
+        }
+
+        function cantSee() {
+            alert('If you cannot see the ring clearly:\n\n• Adjust your screen brightness\n• Move closer to the screen\n• Consider consulting an eye specialist\n\nYou can skip this step if needed.');
+        }
+
+        function cancelTest() {
+            window.location.href = 'home.html';
+        }
+
+        function retakeTest() {
+            currentStep = 1;
+            correctAnswers = 0;
+            document.getElementById('results-modal').classList.add('hidden');
+            updateProgress();
+            generateNewRing();
+        }
+
+        function goToResults() {
+            window.location.href = 'home.html';
+        }
+
+        function goBack() {
+            window.location.href = 'home.html';
+        }
+    </script>
+
+
+</body></html>

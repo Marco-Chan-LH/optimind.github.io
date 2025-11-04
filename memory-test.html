@@ -1,0 +1,373 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {
+  "theme": {
+    "extend": {
+      "colors": {
+        "optimind-orange": "#F28C38",
+        "optimind-peach": "#FFCCB3",
+        "optimind-light": "#FFF8F1",
+        "optimind-dark": "#333333",
+        "optimind-gray": "#666666",
+        "optimind-success": "#66BB6A",
+        "optimind-error": "#E57373"
+      },
+      "fontFamily": {
+        "nunito": [
+          "Nunito",
+          "sans-serif"
+        ],
+        "sans": [
+          "Inter",
+          "sans-serif"
+        ]
+      }
+    }
+  }
+};</script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>::-webkit-scrollbar { display: none;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&amp;display=swap"><style>
+      body {
+        font-family: 'Inter', sans-serif !important;
+      }
+      
+      /* Preserve Font Awesome icons */
+      .fa, .fas, .far, .fal, .fab {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      }
+    </style><style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style></head>
+<body class="font-nunito bg-optimind-light">
+
+    <!-- Cognitive Test Screen -->
+    <div id="cognitive-test-screen" class="min-h-screen bg-gradient-to-b from-optimind-light to-white">
+        
+        <!-- Header Section -->
+        <div id="header" class="px-6 pt-6 pb-4">
+            <div class="flex items-center justify-between mb-4">
+                <button onclick="goBack()" class="p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition-all">
+                    <i class="fa-solid fa-arrow-left text-lg text-optimind-dark"></i>
+                </button>
+                <div class="text-center">
+                    <h1 class="text-xl font-bold text-optimind-dark">Memory Test</h1>
+                </div>
+                <button class="p-2 rounded-full bg-white shadow-lg">
+                    <i class="fa-solid fa-question text-lg text-optimind-orange"></i>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div id="progress-section" class="mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-optimind-gray">Step 1 of 3</span>
+                    <span class="text-sm font-medium text-optimind-orange">33%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-optimind-orange h-2 rounded-full transition-all duration-500" style="width: 33%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Content -->
+        <div id="test-content" class="px-6 pb-20">
+
+            <!-- Memory Phase Display -->
+            <div id="memory-phase" class="bg-white rounded-2xl p-6 shadow-lg mb-4">
+                <div class="text-center mb-4">
+                    <p class="text-lg text-optimind-gray mb-6">Remember this pattern</p>
+                    
+                    <!-- Pattern Grid -->
+                    <div id="pattern-grid" class="grid grid-cols-3 gap-3 max-w-xs mx-auto mb-6">
+                        <div class="pattern-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-optimind-orange rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-optimind-orange rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-optimind-orange rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-optimind-orange rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                        <div class="pattern-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-200 transition-all duration-300"></div>
+                    </div>
+
+                    <!-- Timer Indicator -->
+                    <div id="timer-indicator" class="mt-4">
+                        <div class="flex items-center justify-center space-x-2 mb-2">
+                            <i class="fa-solid fa-clock text-optimind-orange"></i>
+                            <span id="timer-text" class="text-lg font-semibold text-optimind-orange">5</span>
+                        </div>
+                        <div class="w-32 bg-gray-200 rounded-full h-2 mx-auto">
+                            <div id="timer-bar" class="bg-optimind-orange h-2 rounded-full transition-all duration-1000" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recall Phase Display -->
+            <div id="recall-phase" class="bg-white rounded-2xl p-6 shadow-lg mb-4 hidden">
+                <div class="text-center mb-4">
+                    <p class="text-lg text-optimind-gray mb-6">Select the boxes that were colored</p>
+                    
+                    <!-- Interactive Pattern Grid -->
+                    <div id="interactive-grid" class="grid grid-cols-3 gap-3 max-w-xs mx-auto mb-6">
+                        <button onclick="toggleCell(0)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(1)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(2)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(3)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(4)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(5)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(6)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(7)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                        <button onclick="toggleCell(8)" class="interactive-cell w-16 h-16 bg-gray-100 rounded-lg border-2 border-gray-300 hover:border-optimind-orange transition-all duration-200"></button>
+                    </div>
+
+                    <button onclick="clearSelection()" class="bg-gray-200 text-optimind-gray font-medium py-2 px-6 rounded-lg text-base hover:bg-gray-300 transition-all">
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Action Area -->
+        <div id="bottom-actions" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-4">
+            <div class="flex space-x-4">
+                <button onclick="skipTest()" class="flex-1 bg-gray-100 text-optimind-gray font-semibold py-3 px-4 rounded-xl text-base hover:bg-gray-200 transition-all">
+                    Skip Test
+                </button>
+                <button onclick="nextStep()" id="next-button" class="flex-1 bg-optimind-orange text-white font-semibold py-3 px-4 rounded-xl text-base hover:bg-orange-600 transition-all opacity-50 cursor-not-allowed" disabled="">
+                    Continue
+                </button>
+            </div>
+        </div>
+
+        <!-- Feedback Modal -->
+        <div id="feedback-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-8 hidden">
+            <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center">
+                <div id="feedback-icon" class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center">
+                    <i class="text-4xl"></i>
+                </div>
+                <h3 id="feedback-title" class="text-2xl font-bold mb-2"></h3>
+                <p id="feedback-message" class="text-lg text-optimind-gray mb-6"></p>
+                <button onclick="closeFeedback()" class="bg-optimind-orange text-white font-semibold py-3 px-8 rounded-2xl text-lg hover:bg-orange-600 transition-all">
+                    Continue
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let userSelection = new Array(9).fill(false);
+        let correctPattern = [false, true, false, false, true, true, true, false, false];
+        let testScore = 0;
+        let memoryTimer = 5;
+        let timerInterval;
+        let isMemoryPhase = true;
+
+        const testPatterns = [
+            [false, true, false, false, true, true, true, false, false],
+            [true, false, true, false, true, false, true, false, true],
+            [false, false, true, true, false, false, false, true, true]
+        ];
+
+        function startMemoryPhase() {
+            isMemoryPhase = true;
+            memoryTimer = 5;
+            document.getElementById('timer-text').textContent = memoryTimer;
+            document.getElementById('timer-bar').style.width = '100%';
+            
+            timerInterval = setInterval(() => {
+                memoryTimer--;
+                document.getElementById('timer-text').textContent = memoryTimer;
+                document.getElementById('timer-bar').style.width = (memoryTimer / 5) * 100 + '%';
+                
+                if (memoryTimer <= 0) {
+                    clearInterval(timerInterval);
+                    showRecallPhase();
+                }
+            }, 1000);
+        }
+
+        function showRecallPhase() {
+            isMemoryPhase = false;
+            document.getElementById('memory-phase').classList.add('hidden');
+            document.getElementById('recall-phase').classList.remove('hidden');
+            
+            const nextBtn = document.getElementById('next-button');
+            nextBtn.textContent = 'Check Answer';
+        }
+
+        function toggleCell(index) {
+            userSelection[index] = !userSelection[index];
+            const cell = document.querySelectorAll('.interactive-cell')[index];
+            
+            if (userSelection[index]) {
+                cell.classList.remove('bg-gray-100');
+                cell.classList.add('bg-optimind-orange', 'border-optimind-orange');
+            } else {
+                cell.classList.remove('bg-optimind-orange', 'border-optimind-orange');
+                cell.classList.add('bg-gray-100');
+            }
+            
+            // Enable continue button if at least one cell is selected
+            const hasSelection = userSelection.some(selected => selected);
+            const nextBtn = document.getElementById('next-button');
+            if (hasSelection) {
+                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                nextBtn.removeAttribute('disabled');
+            } else {
+                nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                nextBtn.setAttribute('disabled', 'true');
+            }
+        }
+
+        function clearSelection() {
+            userSelection = new Array(9).fill(false);
+            document.querySelectorAll('.interactive-cell').forEach(cell => {
+                cell.classList.remove('bg-optimind-orange', 'border-optimind-orange');
+                cell.classList.add('bg-gray-100');
+            });
+            
+            const nextBtn = document.getElementById('next-button');
+            nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            nextBtn.setAttribute('disabled', 'true');
+        }
+
+        function nextStep() {
+            if (isMemoryPhase) return;
+            if (!userSelection.some(selected => selected)) return;
+            
+            // Check if pattern matches
+            const isCorrect = userSelection.every((selected, index) => selected === correctPattern[index]);
+            if (isCorrect) testScore++;
+            
+            showFeedback(isCorrect);
+        }
+
+        function showFeedback(isCorrect) {
+            const modal = document.getElementById('feedback-modal');
+            const icon = document.getElementById('feedback-icon');
+            const title = document.getElementById('feedback-title');
+            const message = document.getElementById('feedback-message');
+            
+            if (isCorrect) {
+                icon.className = 'w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center bg-optimind-success';
+                icon.innerHTML = '<i class="fa-solid fa-check text-4xl text-white"></i>';
+                title.textContent = 'Excellent memory!';
+                title.className = 'text-2xl font-bold mb-2 text-optimind-success';
+                message.textContent = 'You remembered the pattern perfectly!';
+            } else {
+                icon.className = 'w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center bg-optimind-error';
+                icon.innerHTML = '<i class="fa-solid fa-heart text-4xl text-white"></i>';
+                title.textContent = 'Nice try!';
+                title.className = 'text-2xl font-bold mb-2 text-optimind-error';
+                message.textContent = 'Memory takes practice. Keep going!';
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeFeedback() {
+            document.getElementById('feedback-modal').classList.add('hidden');
+            
+            if (currentStep < 3) {
+                loadNextQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function loadNextQuestion() {
+            currentStep++;
+            correctPattern = testPatterns[currentStep - 1];
+            
+            // Update progress
+            const progressPercent = (currentStep / 3) * 100;
+            document.querySelector('.bg-optimind-orange').style.width = progressPercent + '%';
+            document.querySelector('#progress-section span').textContent = `Step ${currentStep} of 3`;
+            document.querySelector('#progress-section span:last-child').textContent = Math.round(progressPercent) + '%';
+            
+            // Update pattern display
+            const patternCells = document.querySelectorAll('#pattern-grid .pattern-cell');
+            correctPattern.forEach((isColored, index) => {
+                if (isColored) {
+                    patternCells[index].classList.remove('bg-gray-100');
+                    patternCells[index].classList.add('bg-optimind-orange');
+                } else {
+                    patternCells[index].classList.remove('bg-optimind-orange');
+                    patternCells[index].classList.add('bg-gray-100');
+                }
+            });
+            
+            // Reset UI
+            document.getElementById('recall-phase').classList.add('hidden');
+            document.getElementById('memory-phase').classList.remove('hidden');
+            clearSelection();
+            
+            const nextBtn = document.getElementById('next-button');
+            nextBtn.textContent = currentStep === 3 ? 'Finish Test' : 'Continue';
+            
+            startMemoryPhase();
+        }
+
+        function showResults() {
+            const percentage = Math.round((testScore / 3) * 100);
+            let resultMessage = '';
+            
+            if (percentage >= 80) {
+                resultMessage = 'Outstanding memory performance!';
+            } else if (percentage >= 60) {
+                resultMessage = 'Good memory skills!';
+            } else {
+                resultMessage = 'Keep practicing to improve!';
+            }
+            
+            // Direct navigation to home page
+            goBack();
+        }
+
+        function skipTest() {
+            if (timerInterval) clearInterval(timerInterval);
+            // Direct navigation without confirmation
+            goBack();
+        }
+
+        function goBack() {
+            if (timerInterval) clearInterval(timerInterval);
+            // Direct navigation to home page - replace with actual home page URL
+            window.location.href = 'home.html';
+        }
+
+        // Initialize first question
+        document.addEventListener('DOMContentLoaded', function() {
+            correctPattern = testPatterns[0];
+            startMemoryPhase();
+        });
+    </script>
+
+
+</body></html>

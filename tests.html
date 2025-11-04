@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests - OPTIMIND</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            "theme": {
+                "extend": {
+                    "colors": {
+                        "optimind-orange": "#F28C38",
+                        "optimind-peach": "#FFCCB3",
+                        "optimind-light": "#FFF8F1",
+                        "optimind-dark": "#333333",
+                        "optimind-gray": "#666666",
+                        "optimind-success": "#66BB6A",
+                        "optimind-error": "#E57373"
+                    },
+                    "fontFamily": {
+                        "nunito": ["Nunito", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif !important;
+        }
+        .fa, .fas, .far, .fal, .fab {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        html, body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-nunito bg-optimind-light">
+
+    <!-- Tests Screen -->
+    <div id="tests-screen" class="min-h-screen bg-optimind-light">
+        
+        <!-- Header Section -->
+        <div id="header" class="px-8 pt-8 pb-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="bg-white rounded-full p-3 shadow-lg">
+                    <img class="w-8 h-8 object-contain" src="assets/images/logo.png" alt="OPTIMIND Logo">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-optimind-dark">OPTIMIND</h1>
+                    <div class="w-8 h-0.5 bg-optimind-orange rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Page Title -->
+            <div id="title-section" class="mb-6">
+                <h2 class="text-2xl font-bold text-optimind-dark mb-2">Cognitive & Vision Tests</h2>
+                <p class="text-lg text-optimind-gray">Choose a test to assess your abilities</p>
+            </div>
+
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="px-8 pb-20">
+            
+            <!-- Vision Tests Section -->
+            <div id="vision-tests" class="mb-8">
+                <h3 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-eye text-optimind-orange mr-3"></i>
+                    Vision Tests
+                </h3>
+                
+                <div class="space-y-4">
+                    <!-- Visual Acuity Test -->
+                    <div id="visual-acuity-card" class="bg-white rounded-2xl p-6 shadow-lg active:scale-95 transition-all duration-200 cursor-pointer" onclick="startVisualTest()">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl p-3 flex-shrink-0">
+                                <i class="fa-solid fa-eye text-2xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-optimind-dark mb-1">Visual Acuity Test</h4>
+                                <p class="text-optimind-gray text-sm">Test your ability to see fine details clearly</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-sm text-optimind-success font-medium">Last: 92%</span>
+                                    <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium ml-2">5 min</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                        </div>
+                    </div>
+
+                    <!-- Contrast Sensitivity Test -->
+                    <div id="contrast-test-card" class="bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-gradient-to-br from-gray-400 to-gray-600 rounded-2xl p-3 flex-shrink-0">
+                                <i class="fa-solid fa-adjust text-2xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-optimind-dark mb-1">Contrast Sensitivity</h4>
+                                <p class="text-optimind-gray text-sm">Detect differences in light and dark</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cognitive Tests Section -->
+            <div id="cognitive-tests" class="mb-8">
+                <h3 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-brain text-optimind-orange mr-3"></i>
+                    Cognitive Tests
+                </h3>
+                
+                <div class="space-y-4">
+                    <!-- Memory Test -->
+                    <div id="memory-test-card" class="bg-white rounded-2xl p-6 shadow-lg active:scale-95 transition-all duration-200 cursor-pointer" onclick="startMemoryTest()">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-gradient-to-br from-optimind-orange to-orange-500 rounded-2xl p-3 flex-shrink-0">
+                                <i class="fa-solid fa-brain text-2xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-optimind-dark mb-1">Memory Test</h4>
+                                <p class="text-optimind-gray text-sm">Assess your short-term memory abilities</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-sm text-optimind-success font-medium">Last: 78%</span>
+                                    <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium ml-2">8 min</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                        </div>
+                    </div>
+
+                    <!-- Attention Test -->
+                    <div id="attention-test-card" class="bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl p-3 flex-shrink-0">
+                                <i class="fa-solid fa-crosshairs text-2xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-optimind-dark mb-1">Attention Test</h4>
+                                <p class="text-optimind-gray text-sm">Measure focus and concentration</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                        </div>
+                    </div>
+
+                    <!-- Processing Speed Test -->
+                    <div id="processing-test-card" class="bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-gradient-to-br from-red-400 to-red-600 rounded-2xl p-3 flex-shrink-0">
+                                <i class="fa-solid fa-tachometer-alt text-2xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-optimind-dark mb-1">Processing Speed</h4>
+                                <p class="text-optimind-gray text-sm">Test how quickly you process information</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test History Section -->
+            <div id="test-history" class="mb-8">
+                <h3 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-history text-optimind-orange mr-3"></i>
+                    Recent Test Results
+                </h3>
+                
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-eye text-blue-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-optimind-dark">Visual Acuity</p>
+                                    <p class="text-sm text-optimind-gray">Today, 10:30 AM</p>
+                                </div>
+                            </div>
+                            <span class="text-lg font-bold text-optimind-success">92%</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-brain text-optimind-orange text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-optimind-dark">Memory Test</p>
+                                    <p class="text-sm text-optimind-gray">Yesterday, 3:15 PM</p>
+                                </div>
+                            </div>
+                            <span class="text-lg font-bold text-optimind-success">78%</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between py-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-eye text-blue-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-optimind-dark">Visual Acuity</p>
+                                    <p class="text-sm text-optimind-gray">2 days ago, 11:45 AM</p>
+                                </div>
+                            </div>
+                            <span class="text-lg font-bold text-optimind-success">89%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-8 py-4">
+            <div class="flex justify-around items-center">
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToHome()">
+                    <i class="fa-solid fa-home text-xl"></i>
+                    <span class="text-xs">Home</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-orange">
+                    <i class="fa-solid fa-flask text-xl"></i>
+                    <span class="text-xs font-medium">Tests</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToGames()">
+                    <i class="fa-solid fa-gamepad text-xl"></i>
+                    <span class="text-xs">Games</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToProgress()">
+                    <i class="fa-solid fa-chart-line text-xl"></i>
+                    <span class="text-xs">Progress</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="openProfile()">
+                    <i class="fa-solid fa-user text-xl"></i>
+                    <span class="text-xs">Profile</span>
+                </button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function startVisualTest() {
+            window.location.href = 'visual-test.html';
+        }
+
+        function startMemoryTest() {
+            window.location.href = 'memory-test.html';
+        }
+
+        function goToHome() {
+            window.location.href = 'home.html';
+        }
+
+        function goToGames() {
+            window.location.href = 'games.html';
+        }
+
+        function goToProgress() {
+            window.location.href = 'progress.html';
+        }
+
+        function openProfile() {
+            window.location.href = 'profile.html';
+        }
+    </script>
+
+</body>
+</html>

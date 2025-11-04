@@ -1,0 +1,386 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>tailwind.config = {
+  "theme": {
+    "extend": {
+      "colors": {
+        "optimind-orange": "#F28C38",
+        "optimind-peach": "#FFCCB3",
+        "optimind-light": "#FFF8F1",
+        "optimind-dark": "#333333",
+        "optimind-gray": "#666666",
+        "optimind-success": "#66BB6A",
+        "optimind-error": "#E57373"
+      },
+      "fontFamily": {
+        "nunito": [
+          "Nunito",
+          "sans-serif"
+        ],
+        "sans": [
+          "Inter",
+          "sans-serif"
+        ]
+      }
+    }
+  }
+};</script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>::-webkit-scrollbar { display: none;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&amp;display=swap"><style>
+      body {
+        font-family: 'Inter', sans-serif !important;
+      }
+      
+      /* Preserve Font Awesome icons */
+      .fa, .fas, .far, .fal, .fab {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      }
+    </style><style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style></head>
+<body class="font-nunito bg-optimind-light">
+
+    <!-- Progress Screen -->
+    <div id="progress-screen" class="min-h-screen bg-gradient-to-b from-optimind-light to-white">
+        
+        <!-- Header Section -->
+        <div id="header" class="px-8 pt-8 pb-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="bg-white rounded-full p-3 shadow-lg">
+                    <img class="w-8 h-8 object-contain" src="assets/images/logo.png" alt="OPTIMIND Logo">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-optimind-dark">OPTIMIND</h1>
+                    <div class="w-8 h-0.5 bg-optimind-orange rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Page Title -->
+            <div id="title-section" class="mb-6">
+                <h2 class="text-2xl font-bold text-optimind-dark mb-2">Your Progress</h2>
+                <p class="text-lg text-optimind-gray">Track your improvement journey</p>
+            </div>
+
+        </div>
+
+        <!-- Progress Content -->
+        <div id="progress-content" class="px-8 pb-32">
+            
+            <!-- This Week Section -->
+            <div id="this-week-section" class="mb-8">
+                <h2 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-calendar-week text-optimind-orange mr-3"></i>
+                    This Week
+                </h2>
+                
+                <!-- Weekly Summary Card -->
+                <div id="weekly-summary" class="bg-white rounded-2xl p-6 shadow-lg mb-6">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-optimind-peach rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fa-solid fa-trophy text-3xl text-optimind-orange"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-optimind-dark mb-2">Great Progress!</h3>
+                        <p class="text-lg text-optimind-gray">You're doing amazing this week</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-4 bg-optimind-light rounded-xl">
+                            <div class="text-3xl font-bold text-optimind-orange mb-1">3</div>
+                            <div class="text-sm text-optimind-gray">Games Completed</div>
+                        </div>
+                        <div class="text-center p-4 bg-optimind-light rounded-xl">
+                            <div class="text-3xl font-bold text-optimind-success mb-1">+12%</div>
+                            <div class="text-sm text-optimind-gray">Memory Score</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Progress Chart Section -->
+            <div id="chart-section" class="mb-8">
+                <h2 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-chart-line text-optimind-orange mr-3"></i>
+                    Last 5 Sessions
+                </h2>
+                
+                <div id="chart-container" class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="relative" style="height: 300px; width: 100%;">
+                        <canvas id="progressChart" style="height: 300px; width: 100%;"></canvas>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex items-center justify-center space-x-6 text-sm">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-optimind-orange rounded-full mr-2"></div>
+                                <span class="text-optimind-gray">Memory</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                                <span class="text-optimind-gray">Attention</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                <span class="text-optimind-gray">Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skill Breakdown Section -->
+            <div id="skills-section" class="mb-8">
+                <h2 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-star text-optimind-orange mr-3"></i>
+                    Your Skills
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- Memory Skill -->
+                    <div id="memory-skill" class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                                    <i class="fa-solid fa-brain text-xl text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Memory</h3>
+                                    <p class="text-sm text-optimind-gray">Excellent improvement!</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-optimind-success">85%</div>
+                                <div class="text-xs text-optimind-gray">+12% this week</div>
+                            </div>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-purple-500 h-3 rounded-full transition-all duration-1000" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Attention Skill -->
+                    <div id="attention-skill" class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                    <i class="fa-solid fa-eye text-xl text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Attention</h3>
+                                    <p class="text-sm text-optimind-gray">Keep practicing!</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-optimind-orange">72%</div>
+                                <div class="text-xs text-optimind-gray">+5% this week</div>
+                            </div>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-blue-500 h-3 rounded-full transition-all duration-1000" style="width: 72%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Vision Skill -->
+                    <div id="vision-skill" class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                                    <i class="fa-solid fa-eye text-xl text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Vision</h3>
+                                    <p class="text-sm text-optimind-gray">Steady progress!</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-optimind-success">78%</div>
+                                <div class="text-xs text-optimind-gray">+8% this week</div>
+                            </div>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-green-500 h-3 rounded-full transition-all duration-1000" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-8 py-4">
+            <div class="flex justify-around items-center">
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToHome()">
+                    <i class="fa-solid fa-home text-xl"></i>
+                    <span class="text-xs">Home</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToTests()">
+                    <i class="fa-solid fa-flask text-xl"></i>
+                    <span class="text-xs">Tests</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToGames()">
+                    <i class="fa-solid fa-gamepad text-xl"></i>
+                    <span class="text-xs">Games</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-orange">
+                    <i class="fa-solid fa-chart-line text-xl"></i>
+                    <span class="text-xs font-medium">Progress</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="openProfile()">
+                    <i class="fa-solid fa-user text-xl"></i>
+                    <span class="text-xs">Profile</span>
+                </button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Initialize Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('progressChart');
+            if (ctx) {
+                const chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Session 1', 'Session 2', 'Session 3', 'Session 4', 'Session 5'],
+                        datasets: [{
+                            label: 'Memory',
+                            data: [65, 70, 75, 80, 85],
+                            borderColor: '#F28C38',
+                            backgroundColor: 'rgba(242, 140, 56, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#F28C38',
+                            pointBorderColor: '#F28C38',
+                            pointRadius: 6
+                        }, {
+                            label: 'Attention',
+                            data: [60, 65, 68, 70, 72],
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#3B82F6',
+                            pointBorderColor: '#3B82F6',
+                            pointRadius: 6
+                        }, {
+                            label: 'Vision',
+                            data: [68, 72, 74, 76, 78],
+                            borderColor: '#10B981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#10B981',
+                            pointBorderColor: '#10B981',
+                            pointRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: {
+                                    color: 'rgba(0,0,0,0.1)',
+                                    drawBorder: false
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: '#666666'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: '#666666'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        function goToHome() {
+            window.location.href = 'home.html';
+        }
+
+        function goToGames() {
+            window.location.href = 'games.html';
+        }
+
+        function openProfile() {
+            window.location.href = 'profile.html';
+        }
+
+        function goToTests() {
+            window.location.href = 'tests.html';
+        }
+
+        function continuePlaying() {
+            alert('Redirecting to training games...\n\nLet\'s keep improving together!');
+        }
+
+        function shareProgress() {
+            alert('Sharing your progress...\n\nYour achievements:\n• 5-day streak\n• 12% memory improvement\n• 3 games completed this week');
+        }
+
+        function goBack() {
+            alert('Returning to main dashboard...');
+        }
+    </script>
+
+
+</body></html>

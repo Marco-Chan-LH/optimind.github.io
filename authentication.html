@@ -1,0 +1,261 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {
+  "theme": {
+    "extend": {
+      "colors": {
+        "optimind-orange": "#F28C38",
+        "optimind-peach": "#FFCCB3",
+        "optimind-light": "#FFF8F1",
+        "optimind-dark": "#333333",
+        "optimind-gray": "#666666",
+        "optimind-success": "#66BB6A",
+        "optimind-error": "#E57373"
+      },
+      "fontFamily": {
+        "nunito": [
+          "Nunito",
+          "sans-serif"
+        ],
+        "sans": [
+          "Inter",
+          "sans-serif"
+        ]
+      }
+    }
+  }
+};</script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>::-webkit-scrollbar { display: none;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&amp;display=swap"><style>
+      body {
+        font-family: 'Inter', sans-serif !important;
+      }
+      
+      /* Preserve Font Awesome icons */
+      .fa, .fas, .far, .fal, .fab {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      }
+    </style><style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style></head>
+<body class="font-nunito bg-optimind-light">
+
+    <!-- Login/Signup Screen -->
+    <div id="login-signup-screen" class="h-screen bg-optimind-light overflow-hidden flex flex-col">
+        
+        <!-- Header Section -->
+        <div id="header-section" class="px-8 pt-8 pb-6">
+            
+            <!-- Logo -->
+            <div class="flex justify-center mb-6">
+                <div class="bg-white rounded-full p-4 shadow-lg">
+                    <img class="w-16 h-16 object-contain" src="assets/images/logo.png" alt="OPTIMIND Logo">
+                </div>
+            </div>
+
+            <!-- Welcome Message -->
+            <div class="text-center">
+                <h2 class="text-2xl font-semibold text-optimind-dark mb-3">Let's get started</h2>
+                <p class="text-lg text-optimind-gray">Choose how you'd like to begin your wellness journey</p>
+            </div>
+
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="flex-1 px-8 py-4">
+            
+            <!-- Guest Access -->
+            <div id="guest-section" class="mb-6">
+                <button onclick="continueAsGuest()" class="w-full bg-optimind-orange text-white text-xl font-semibold py-5 rounded-2xl shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center space-x-3">
+                    <i class="fa-solid fa-user-clock text-lg"></i>
+                    <span>Continue as Guest</span>
+                </button>
+                <p class="text-center text-sm text-optimind-gray mt-3">Try the app without creating an account</p>
+            </div>
+
+            <!-- Divider -->
+            <div id="divider" class="flex items-center mb-6">
+                <div class="flex-1 h-px bg-gray-300"></div>
+                <span class="px-4 text-optimind-gray">or</span>
+                <div class="flex-1 h-px bg-gray-300"></div>
+            </div>
+
+            <!-- Sign In Options -->
+            <div id="signin-options" class="space-y-4 mb-6">
+                
+                <!-- Apple Sign In -->
+                <button onclick="signInWithApple()" class="w-full bg-black text-white text-lg font-medium py-5 rounded-2xl shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center space-x-3">
+                    <i class="fa-brands fa-apple text-xl"></i>
+                    <span>Sign in with Apple</span>
+                </button>
+
+                <!-- Create Account -->
+                <button onclick="showCreateAccount()" class="w-full border-2 border-optimind-orange text-optimind-orange text-lg font-medium py-5 rounded-2xl active:scale-95 transition-all duration-200 flex items-center justify-center space-x-3">
+                    <i class="fa-solid fa-user-plus text-lg"></i>
+                    <span>Create Account</span>
+                </button>
+
+            </div>
+
+            <!-- Already Have Account -->
+            <div id="existing-account" class="text-center">
+                <button onclick="showSignIn()" class="text-optimind-orange font-medium text-lg underline">
+                    Already have an account? Sign in
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Create Account Form -->
+    <div id="create-account-form" class="h-screen bg-optimind-light overflow-hidden hidden flex flex-col">
+        
+        <!-- Header -->
+        <div id="form-header" class="px-8 pt-8 pb-4 flex items-center">
+            <button onclick="backToLogin()" class="mr-4 p-2 rounded-full hover:bg-white/50 transition-colors">
+                <i class="fa-solid fa-arrow-left text-2xl text-optimind-dark"></i>
+            </button>
+            <h2 class="text-2xl font-semibold text-optimind-dark">Create Account</h2>
+        </div>
+
+        <!-- Form Content -->
+        <div id="form-content" class="flex-1 px-8 py-2 overflow-y-auto">
+            
+            <form id="signup-form" class="space-y-5">
+                
+                <!-- Name Field -->
+                <div id="name-field">
+                    <label class="block text-lg font-medium text-optimind-dark mb-2">Full Name</label>
+                    <div class="relative">
+                        <input type="text" id="name-input" class="w-full text-lg px-4 py-4 border-2 border-gray-300 rounded-xl focus:border-optimind-orange focus:outline-none transition-colors" placeholder="Enter your full name">
+                        <i id="name-check" class="fa-solid fa-check absolute right-4 top-1/2 transform -translate-y-1/2 text-optimind-success hidden"></i>
+                        <i id="name-error" class="fa-solid fa-times absolute right-4 top-1/2 transform -translate-y-1/2 text-optimind-error hidden"></i>
+                    </div>
+                </div>
+
+                <!-- Age Field -->
+                <div id="age-field">
+                    <label class="block text-lg font-medium text-optimind-dark mb-2">Age</label>
+                    <div class="relative">
+                        <input type="number" id="age-input" class="w-full text-lg px-4 py-4 border-2 border-gray-300 rounded-xl focus:border-optimind-orange focus:outline-none transition-colors" placeholder="Enter your age" min="18" max="120">
+                        <i id="age-check" class="fa-solid fa-check absolute right-4 top-1/2 transform -translate-y-1/2 text-optimind-success hidden"></i>
+                        <i id="age-error" class="fa-solid fa-times absolute right-4 top-1/2 transform -translate-y-1/2 text-optimind-error hidden"></i>
+                    </div>
+                </div>
+
+                <!-- Email Field (Optional) -->
+                <div id="email-field">
+                    <label class="block text-lg font-medium text-optimind-dark mb-2">Email <span class="text-optimind-gray font-normal">(Optional)</span></label>
+                    <div class="relative">
+                        <input type="email" id="email-input" class="w-full text-lg px-4 py-4 border-2 border-gray-300 rounded-xl focus:border-optimind-orange focus:outline-none transition-colors" placeholder="Enter your email">
+                        <i id="email-check" class="fa-solid fa-check absolute right-4 top-1/2 transform -translate-y-1/2 text-optimind-success hidden"></i>
+                        <i id="email-error" class="fa-solid fa-times absolute right-4 top-1/2 transform -translate-y-1/2 text-optimind-error hidden"></i>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- Form Actions -->
+        <div id="form-actions" class="px-8 pb-6 space-y-3">
+            <button onclick="createAccount()" class="w-full bg-optimind-orange text-white text-xl font-semibold py-5 rounded-2xl shadow-lg active:scale-95 transition-all duration-200">
+                Create Account
+            </button>
+            <button onclick="backToLogin()" class="w-full text-optimind-gray text-lg font-medium py-3">
+                Cancel
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        function continueAsGuest() {
+            // Navigate to home page
+            window.location.href = 'home.html';
+        }
+
+        function signInWithApple() {
+            window.location.href = 'home.html';
+        }
+
+        function showCreateAccount() {
+            document.getElementById('login-signup-screen').classList.add('hidden');
+            document.getElementById('create-account-form').classList.remove('hidden');
+        }
+
+        function showSignIn() {
+            window.location.href = 'home.html';
+        }
+
+        function backToLogin() {
+            document.getElementById('create-account-form').classList.add('hidden');
+            document.getElementById('login-signup-screen').classList.remove('hidden');
+        }
+
+        function validateField(inputId, checkId, errorId, isValid) {
+            const check = document.getElementById(checkId);
+            const error = document.getElementById(errorId);
+            
+            if (isValid) {
+                check.classList.remove('hidden');
+                error.classList.add('hidden');
+            } else {
+                check.classList.add('hidden');
+                error.classList.remove('hidden');
+            }
+        }
+
+        // Real-time validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameInput = document.getElementById('name-input');
+            const ageInput = document.getElementById('age-input');
+            const emailInput = document.getElementById('email-input');
+
+            nameInput?.addEventListener('input', function() {
+                const isValid = this.value.trim().length >= 2;
+                validateField('name-input', 'name-check', 'name-error', isValid);
+            });
+
+            ageInput?.addEventListener('input', function() {
+                const age = parseInt(this.value);
+                const isValid = age >= 18 && age <= 120;
+                validateField('age-input', 'age-check', 'age-error', isValid);
+            });
+
+            emailInput?.addEventListener('input', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const isValid = this.value === '' || emailRegex.test(this.value);
+                validateField('email-input', 'email-check', 'email-error', isValid);
+            });
+        });
+
+        function createAccount() {
+            window.location.href = 'home.html';
+        }
+    </script>
+
+</body></html>

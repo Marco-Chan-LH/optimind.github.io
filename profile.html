@@ -1,0 +1,448 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {
+  "theme": {
+    "extend": {
+      "colors": {
+        "optimind-orange": "#F28C38",
+        "optimind-peach": "#FFCCB3",
+        "optimind-light": "#FFF8F1",
+        "optimind-dark": "#333333",
+        "optimind-gray": "#666666",
+        "optimind-success": "#66BB6A",
+        "optimind-error": "#E57373"
+      },
+      "fontFamily": {
+        "nunito": [
+          "Nunito",
+          "sans-serif"
+        ],
+        "sans": [
+          "Inter",
+          "sans-serif"
+        ]
+      }
+    }
+  }
+};</script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>::-webkit-scrollbar { display: none;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&amp;display=swap"><style>
+      body {
+        font-family: 'Inter', sans-serif !important;
+      }
+      
+      /* Preserve Font Awesome icons */
+      .fa, .fas, .far, .fal, .fab {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      }
+    </style><style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style></head>
+<body class="font-nunito bg-optimind-light">
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="min-h-screen bg-gradient-to-b from-optimind-light to-white">
+        
+        <!-- Header Section -->
+        <div id="header" class="px-8 pt-8 pb-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="bg-white rounded-full p-3 shadow-lg">
+                    <img class="w-8 h-8 object-contain" src="assets/images/logo.png" alt="OPTIMIND Logo">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-optimind-dark">OPTIMIND</h1>
+                    <div class="w-8 h-0.5 bg-optimind-orange rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Page Title -->
+            <div id="title-section" class="mb-6">
+                <h2 class="text-2xl font-bold text-optimind-dark mb-2">Profile & Settings</h2>
+                <p class="text-lg text-optimind-gray">Customize your experience</p>
+            </div>
+
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="px-8 mb-6">
+    <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Profile" class="w-16 h-16 rounded-full object-cover">
+                <button onclick="changeAvatar()" class="absolute -bottom-1 -right-1 w-6 h-6 bg-optimind-orange rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-camera text-white text-xs"></i>
+                </button>
+            </div>
+            <div class="flex-1">
+                <h3 class="text-xl font-semibold text-optimind-dark">Marco Wong</h3>
+                <p class="text-lg text-optimind-gray">Age 68</p>
+            </div>
+            <button onclick="editProfile()" class="p-3 rounded-full bg-optimind-peach hover:bg-optimind-orange hover:text-white transition-all">
+                <i class="fa-solid fa-edit text-optimind-orange hover:text-white"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+        <!-- Settings List -->
+        <div id="settings-list" class="px-8 space-y-4">
+            
+            <!-- Display Settings -->
+            <div id="display-settings" class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="p-6 border-b border-gray-100">
+                    <h3 class="text-xl font-semibold text-optimind-dark flex items-center">
+                        <i class="fa-solid fa-display mr-3 text-optimind-orange"></i>
+                        Display
+                    </h3>
+                </div>
+                
+                <!-- Font Size Setting -->
+                <div class="p-6 border-b border-gray-100">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h4 class="text-lg font-medium text-optimind-dark">Font Size</h4>
+                            <p class="text-optimind-gray">Choose your preferred text size</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="setFontSize('normal')" id="font-normal" class="font-size-btn p-4 rounded-xl border-2 border-optimind-orange bg-optimind-peach text-optimind-dark font-medium transition-all">
+                            <div class="text-base mb-1">Normal</div>
+                            <div class="text-sm text-optimind-gray">Aa</div>
+                        </button>
+                        <button onclick="setFontSize('large')" id="font-large" class="font-size-btn p-4 rounded-xl border-2 border-gray-200 bg-white text-optimind-dark font-medium hover:border-optimind-orange transition-all">
+                            <div class="text-lg mb-1">Large</div>
+                            <div class="text-base text-optimind-gray">Aa</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dark Mode Toggle -->
+                <div class="p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="text-lg font-medium text-optimind-dark">Dark Mode</h4>
+                            <p class="text-optimind-gray">Reduce eye strain in low light</p>
+                        </div>
+                        <div class="relative">
+                            <input type="checkbox" id="dark-mode-toggle" class="sr-only" onchange="toggleDarkMode()">
+                            <label for="dark-mode-toggle" class="flex items-center cursor-pointer">
+                                <div class="relative">
+                                    <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                                    <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform"></div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Information -->
+            <div id="app-info-settings" class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="p-6 border-b border-gray-100">
+                    <h3 class="text-xl font-semibold text-optimind-dark flex items-center">
+                        <i class="fa-solid fa-info-circle mr-3 text-optimind-orange"></i>
+                        App Information
+                    </h3>
+                </div>
+                
+                <!-- Help & Support -->
+                <button onclick="openHelp()" class="w-full p-6 text-left border-b border-gray-100 hover:bg-gray-50 transition-all">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="text-lg font-medium text-optimind-dark">Help &amp; Support</h4>
+                            <p class="text-optimind-gray">Get help using the app</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                    </div>
+                </button>
+
+                <!-- About App -->
+                <button onclick="openAbout()" class="w-full p-6 text-left border-b border-gray-100 hover:bg-gray-50 transition-all">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="text-lg font-medium text-optimind-dark">About OPTIMIND</h4>
+                            <p class="text-optimind-gray">Version 1.0.0</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                    </div>
+                </button>
+
+                <!-- Privacy Policy -->
+                <button onclick="openPrivacy()" class="w-full p-6 text-left hover:bg-gray-50 transition-all">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="text-lg font-medium text-optimind-dark">Privacy Policy</h4>
+                            <p class="text-optimind-gray">How we protect your data</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-optimind-gray"></i>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Account Actions -->
+            <div id="account-actions" class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <!-- Reset Progress -->
+                <button onclick="resetProgress()" class="w-full p-6 text-left border-b border-gray-100 hover:bg-gray-50 transition-all">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="text-lg font-medium text-optimind-error">Reset Progress</h4>
+                            <p class="text-optimind-gray">Clear all test results and scores</p>
+                        </div>
+                        <i class="fa-solid fa-rotate-left text-optimind-error"></i>
+                    </div>
+                </button>
+
+                <!-- Sign Out -->
+                <button onclick="signOut()" class="w-full p-6 text-left hover:bg-gray-50 transition-all">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="text-lg font-medium text-optimind-error">Sign Out</h4>
+                            <p class="text-optimind-gray">Return to welcome screen</p>
+                        </div>
+                        <i class="fa-solid fa-sign-out-alt text-optimind-error"></i>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Bottom Spacing -->
+        <div class="h-24"></div>
+
+        <!-- Edit Profile Modal -->
+        <div id="edit-profile-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-2xl p-8 mx-8 max-w-md w-full">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold text-optimind-dark">Edit Profile</h3>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-lg font-medium text-optimind-dark mb-2">Name</label>
+                        <input type="text" id="edit-name" value="Margaret Johnson" class="w-full p-4 text-lg border-2 border-gray-200 rounded-xl focus:border-optimind-orange outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-lg font-medium text-optimind-dark mb-2">Age</label>
+                        <input type="number" id="edit-age" value="72" class="w-full p-4 text-lg border-2 border-gray-200 rounded-xl focus:border-optimind-orange outline-none">
+                    </div>
+                </div>
+                <div class="flex space-x-3 mt-8">
+                    <button onclick="cancelEdit()" class="flex-1 bg-gray-100 text-optimind-gray font-semibold py-4 px-6 rounded-2xl hover:bg-gray-200 transition-all">
+                        Cancel
+                    </button>
+                    <button onclick="saveProfile()" class="flex-1 bg-optimind-orange text-white font-semibold py-4 px-6 rounded-2xl hover:bg-orange-600 transition-all">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-8 py-4">
+            <div class="flex justify-around items-center">
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToHome()">
+                    <i class="fa-solid fa-home text-xl"></i>
+                    <span class="text-xs">Home</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToTests()">
+                    <i class="fa-solid fa-flask text-xl"></i>
+                    <span class="text-xs">Tests</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToGames()">
+                    <i class="fa-solid fa-gamepad text-xl"></i>
+                    <span class="text-xs">Games</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToProgress()">
+                    <i class="fa-solid fa-chart-line text-xl"></i>
+                    <span class="text-xs">Progress</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-orange">
+                    <i class="fa-solid fa-user text-xl"></i>
+                    <span class="text-xs font-medium">Profile</span>
+                </button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentFontSize = 'normal';
+        let isDarkMode = false;
+        let isHighContrast = false;
+        let isVoiceEnabled = false;
+
+        function setFontSize(size) {
+            currentFontSize = size;
+            
+            // Update button styles
+            document.querySelectorAll('.font-size-btn').forEach(btn => {
+                btn.className = 'font-size-btn p-4 rounded-xl border-2 border-gray-200 bg-white text-optimind-dark font-medium hover:border-optimind-orange transition-all';
+            });
+            
+            const selectedBtn = document.getElementById(`font-${size}`);
+            selectedBtn.className = 'font-size-btn p-4 rounded-xl border-2 border-optimind-orange bg-optimind-peach text-optimind-dark font-medium transition-all';
+            
+            // Apply font size changes
+            if (size === 'large') {
+                document.body.style.fontSize = '1.2em';
+            } else {
+                document.body.style.fontSize = '1em';
+            }
+            
+            showToast(`Font size changed to ${size}`);
+        }
+
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            const toggle = document.getElementById('dark-mode-toggle');
+            const dot = toggle.nextElementSibling.querySelector('.dot');
+            const bg = toggle.nextElementSibling.querySelector('div');
+            
+            if (isDarkMode) {
+                dot.style.transform = 'translateX(24px)';
+                bg.style.backgroundColor = '#F28C38';
+                showToast('Dark mode enabled');
+            } else {
+                dot.style.transform = 'translateX(0)';
+                bg.style.backgroundColor = '#D1D5DB';
+                showToast('Dark mode disabled');
+            }
+        }
+
+        function toggleHighContrast() {
+            isHighContrast = !isHighContrast;
+            const toggle = document.getElementById('contrast-toggle');
+            const dot = toggle.nextElementSibling.querySelector('.dot');
+            const bg = toggle.nextElementSibling.querySelector('div');
+            
+            if (isHighContrast) {
+                dot.style.transform = 'translateX(24px)';
+                bg.style.backgroundColor = '#F28C38';
+                showToast('High contrast enabled');
+            } else {
+                dot.style.transform = 'translateX(0)';
+                bg.style.backgroundColor = '#D1D5DB';
+                showToast('High contrast disabled');
+            }
+        }
+
+        function toggleVoice() {
+            isVoiceEnabled = !isVoiceEnabled;
+            const toggle = document.getElementById('voice-toggle');
+            const dot = toggle.nextElementSibling.querySelector('.dot');
+            const bg = toggle.nextElementSibling.querySelector('div');
+            
+            if (isVoiceEnabled) {
+                dot.style.transform = 'translateX(24px)';
+                bg.style.backgroundColor = '#F28C38';
+                showToast('Voice instructions enabled');
+            } else {
+                dot.style.transform = 'translateX(0)';
+                bg.style.backgroundColor = '#D1D5DB';
+                showToast('Voice instructions disabled');
+            }
+        }
+
+        function editProfile() {
+            document.getElementById('edit-profile-modal').classList.remove('hidden');
+        }
+
+        function cancelEdit() {
+            document.getElementById('edit-profile-modal').classList.add('hidden');
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('edit-name').value;
+            const age = document.getElementById('edit-age').value;
+            
+            // Update profile display
+            document.querySelector('#profile-section h3').textContent = name;
+            document.querySelector('#profile-section p').textContent = `Age ${age}`;
+            
+            document.getElementById('edit-profile-modal').classList.add('hidden');
+            showToast('Profile updated successfully');
+        }
+
+        function changeAvatar() {
+            showToast('Avatar change feature coming soon');
+        }
+
+        function openHelp() {
+            alert('Help & Support\n\nFor assistance:\n• Email: support@optimind.app\n• Phone: 1-800-OPTIMIND\n• Visit our FAQ section');
+        }
+
+        function openAbout() {
+            alert('About OPTIMIND\n\nVersion 1.0.0\n\nOptimind helps seniors maintain cognitive and visual wellness through engaging tests and training exercises.\n\nDeveloped with care for elderly users.');
+        }
+
+        function openPrivacy() {
+            alert('Privacy Policy\n\nYour privacy is important to us. We:\n• Store data securely\n• Never share personal information\n• Use data only to improve your experience\n\nFor full details, visit our website.');
+        }
+
+        function resetProgress() {
+            // No action - button is non-functional for now
+        }
+
+        function signOut() {
+            window.location.href = 'splash.html';
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-optimind-dark text-white px-6 py-3 rounded-xl shadow-lg z-50';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        function goToHome() {
+            window.location.href = 'home.html';
+        }
+
+        function goToGames() {
+            window.location.href = 'games.html';
+        }
+
+        function goToProgress() {
+            window.location.href = 'progress.html';
+        }
+
+        function goToTests() {
+            window.location.href = 'tests.html';
+        }
+    </script>
+
+
+</body></html>

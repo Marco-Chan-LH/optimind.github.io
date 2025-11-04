@@ -1,0 +1,391 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {
+  "theme": {
+    "extend": {
+      "colors": {
+        "optimind-orange": "#F28C38",
+        "optimind-peach": "#FFCCB3",
+        "optimind-light": "#FFF8F1",
+        "optimind-dark": "#333333",
+        "optimind-gray": "#666666",
+        "optimind-success": "#66BB6A",
+        "optimind-error": "#E57373"
+      },
+      "fontFamily": {
+        "nunito": [
+          "Nunito",
+          "sans-serif"
+        ],
+        "sans": [
+          "Inter",
+          "sans-serif"
+        ]
+      }
+    }
+  }
+};</script>
+    <script>window.FontAwesomeConfig = {autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>::-webkit-scrollbar { display: none;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&amp;display=swap"><style>
+      body {
+        font-family: 'Inter', sans-serif !important;
+      }
+      
+      /* Preserve Font Awesome icons */
+      .fa, .fas, .far, .fal, .fab {
+        font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+      }
+    </style><style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  </style></head>
+<body class="font-nunito bg-optimind-light">
+
+    <!-- Training Games Screen -->
+    <div id="training-games-screen" class="min-h-screen bg-gradient-to-b from-optimind-light to-white">
+        
+        <!-- Header Section -->
+        <div id="header" class="px-8 pt-8 pb-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="bg-white rounded-full p-3 shadow-lg">
+                    <img class="w-8 h-8 object-contain" src="assets/images/logo.png" alt="OPTIMIND Logo">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-optimind-dark">OPTIMIND</h1>
+                    <div class="w-8 h-0.5 bg-optimind-orange rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Page Title -->
+            <div id="title-section" class="mb-6">
+                <h2 class="text-2xl font-bold text-optimind-dark mb-2">Training Games</h2>
+                <p class="text-lg text-optimind-gray">Exercise your mind and have fun!</p>
+            </div>
+
+        </div>
+
+        <!-- Games Grid -->
+        <div id="games-content" class="px-8 pb-32">
+            
+            <!-- Memory Games Section -->
+            <div id="memory-games" class="mb-8">
+                <h2 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-brain text-optimind-orange mr-3"></i>
+                    Memory Games
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- Memory Match Game -->
+                    <div id="memory-match-card" class="game-card bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center">
+                                    <i class="fa-solid fa-clone text-2xl text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Memory Match</h3>
+                                    <p class="text-sm text-optimind-gray">Find matching pairs of cards</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-2xl cursor-not-allowed">
+                                Soon
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pattern Memory Game -->
+                    <div id="pattern-memory-card" class="game-card bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+                                    <i class="fa-solid fa-th text-2xl text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Pattern Memory</h3>
+                                    <p class="text-sm text-optimind-gray">Remember and recreate patterns</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-2xl cursor-not-allowed">
+                                Soon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attention Games Section -->
+            <div id="attention-games" class="mb-8">
+                <h2 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-eye text-optimind-orange mr-3"></i>
+                    Attention Games
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- Tap the Shape Game -->
+                    <div id="tap-shape-card" class="game-card bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center">
+                                    <i class="fa-solid fa-shapes text-2xl text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Tap the Shape</h3>
+                                    <p class="text-sm text-optimind-gray">Find specific shapes quickly</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-2xl cursor-not-allowed">
+                                Soon
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Color Focus Game -->
+                    <div id="color-focus-card" class="game-card bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center">
+                                    <i class="fa-solid fa-palette text-2xl text-pink-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Color Focus</h3>
+                                    <p class="text-sm text-optimind-gray">Match colors under pressure</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-2xl cursor-not-allowed">
+                                Soon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reaction Games Section -->
+            <div id="reaction-games" class="mb-8">
+                <h2 class="text-xl font-semibold text-optimind-dark mb-4 flex items-center">
+                    <i class="fa-solid fa-bolt text-optimind-orange mr-3"></i>
+                    Reaction Games
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- Speed Tap Game -->
+                    <div id="speed-tap-card" class="game-card bg-white rounded-2xl p-6 shadow-lg opacity-60">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center">
+                                    <i class="fa-solid fa-hand-pointer text-2xl text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-optimind-dark">Speed Tap</h3>
+                                    <p class="text-sm text-optimind-gray">Tap as fast as you can</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="text-xs bg-optimind-peach text-optimind-orange px-3 py-1 rounded-full font-medium">Coming Soon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="bg-gray-300 text-gray-500 font-semibold py-3 px-6 rounded-2xl cursor-not-allowed">
+                                Soon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Card -->
+            
+
+
+    
+
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-8 py-4">
+            <div class="flex justify-around items-center">
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goHome()">
+                    <i class="fa-solid fa-home text-xl"></i>
+                    <span class="text-xs">Home</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToTests()">
+                    <i class="fa-solid fa-flask text-xl"></i>
+                    <span class="text-xs">Tests</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-orange">
+                    <i class="fa-solid fa-gamepad text-xl"></i>
+                    <span class="text-xs font-medium">Games</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="goToProgress()">
+                    <i class="fa-solid fa-chart-line text-xl"></i>
+                    <span class="text-xs">Progress</span>
+                </button>
+                
+                <button class="flex flex-col items-center space-y-1 text-optimind-gray" onclick="openProfile()">
+                    <i class="fa-solid fa-user text-xl"></i>
+                    <span class="text-xs">Profile</span>
+                </button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let slowModeEnabled = false;
+        let soundsEnabled = true;
+        let loadingProgress = 0;
+
+        function playGame(gameType) {
+            showLoadingScreen(gameType);
+        }
+
+        function showLoadingScreen(gameType) {
+            const modal = document.getElementById('loading-modal');
+            const loadingBar = document.getElementById('loading-bar');
+            
+            modal.classList.remove('hidden');
+            loadingProgress = 0;
+            
+            const loadingInterval = setInterval(() => {
+                loadingProgress += Math.random() * 25;
+                if (loadingProgress >= 100) {
+                    loadingProgress = 100;
+                    clearInterval(loadingInterval);
+                    setTimeout(() => {
+                        hideLoadingScreen(gameType);
+                    }, 500);
+                }
+                loadingBar.style.width = loadingProgress + '%';
+            }, 200);
+        }
+
+        function hideLoadingScreen(gameType) {
+            document.getElementById('loading-modal').classList.add('hidden');
+            
+            let gameMessage = '';
+            switch(gameType) {
+                case 'memory-match':
+                    gameMessage = 'Starting Memory Match game...';
+                    break;
+                case 'pattern-memory':
+                    gameMessage = 'Starting Pattern Memory game...';
+                    break;
+                case 'tap-shape':
+                    gameMessage = 'Starting Tap the Shape game...';
+                    break;
+                case 'color-focus':
+                    gameMessage = 'Starting Color Focus game...';
+                    break;
+                case 'speed-tap':
+                    gameMessage = 'Starting Speed Tap game...';
+                    break;
+            }
+            
+            alert(gameMessage + '\n\nGame would start here with full-screen gameplay.');
+        }
+
+        function toggleSlowMode() {
+            slowModeEnabled = !slowModeEnabled;
+            if (slowModeEnabled) {
+                alert('Slow mode enabled - games will run at a comfortable pace.');
+            } else {
+                alert('Slow mode disabled - games will run at normal speed.');
+            }
+        }
+
+        function toggleSounds() {
+            soundsEnabled = !soundsEnabled;
+            if (soundsEnabled) {
+                alert('Sound effects enabled.');
+            } else {
+                alert('Sound effects disabled.');
+            }
+        }
+
+        function viewProgress() {
+            alert('Opening progress dashboard...\n\nHere you would see:\n- Weekly performance charts\n- Skill improvement trends\n- Achievement badges\n- Personal records');
+        }
+
+        function goBack() {
+            alert('Returning to main dashboard...');
+        }
+
+        function goHome() {
+            window.location.href = 'home.html';
+        }
+
+        function goToVision() {
+            alert('Navigating to Vision Tests...');
+        }
+
+        function goToMemory() {
+            alert('Navigating to Memory Tests...');
+        }
+
+        function goToProgress() {
+            window.location.href = 'progress.html';
+        }
+
+        function openProfile() {
+            window.location.href = 'profile.html';
+        }
+
+        function goToTests() {
+            window.location.href = 'tests.html';
+        }
+
+        // Add hover effects for game cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameCards = document.querySelectorAll('.game-card');
+            
+            gameCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+
+
+</body></html>
