@@ -1,7 +1,7 @@
 # Optimind Project Demo
 
 ## Overview
-This is a client demo project for Optimind, showcasing AI-powered solutions and modern web development capabilities.
+This is a landing DEMO for Optimind, showcasing AI-powered solutions and modern web development capabilities.
 
 ## Project Details
 - **Client**: Optimind
