@@ -1,5 +1,3 @@
-Absolutely — here's a clear and professional **project brief** for your app, ideal for sharing with designers, developers, stakeholders, or even pitch materials.
-
 ---
 
 ## 📘 **Project Brief: OPTIMIND – Cognitive & Vision Wellness for the Elderly**
@@ -81,5 +79,3 @@ The current goal is to create a working **demo version** that includes:
   This MVP will serve as the foundation for feedback, iteration, and possible expansion into a full product.
 
 ---
-
-Let me know if you'd like a **one-page PDF version**, or if you want me to tailor this brief for **pitching investors**, **presenting in slides**, or adding to **Notion/Figma project docs**.
