@@ -1,6 +1,4 @@
----
-
-## 📘 **Project Brief: OPTIMIND – Cognitive & Vision Wellness for the Elderly**
+### 📘 **Project Brief: OPTIMIND – Cognitive & Vision Wellness for the Elderly**
 
 ### 🧠 **Overview**
 
@@ -77,5 +75,3 @@ The current goal is to create a working **demo version** that includes:
 * 2–3 training games
 * Basic progress tracking
   This MVP will serve as the foundation for feedback, iteration, and possible expansion into a full product.
-
----
