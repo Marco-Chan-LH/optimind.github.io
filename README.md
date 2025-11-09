@@ -1,19 +1,18 @@
 # Optimind Project Demo
 
 ## Overview
-This is a landing DEMO for Optimind, showcasing AI-powered solutions and modern web development capabilities.
+This is OPTIMIND project landing page for JUMPSTARTER ZPIRE Round 1, showcasing AI-powered solutions and development capabilities.
 
 ## Project Details
-- **Client**: Optimind
-- **Type**: AI Solutions Demo
-- **Status**: In Development
+- **Type**: AI-powered Solution for vision and cognitive functions screening, and personalized training 
+- **Status**: Prototyping
 - **Access URL**: https://marco-chan-lh.github.io/optimind.github.io/
 
 ## Features
 - Responsive design optimized for all devices
 - Modern gradient UI with glassmorphism effects
 - Professional welcome page with branding
-- Mobile-first approach
+- Mobile/Tablet-first approach
 
 ## File Structure
 ```
@@ -26,8 +25,6 @@ optimind/
 
 ## Future Enhancements
 - [ ] Add interactive demo features
-- [ ] Implement external CSS file
-- [ ] Add JavaScript functionality
 - [ ] Include project screenshots
 - [ ] Add contact form integration
 
